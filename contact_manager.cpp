@@ -86,26 +86,64 @@ void Contact_Manager::Show_Contacts()
 }
 
 void Contact_Manager:: Search_Contact()
-{
+{   
     try{
-        cout<<"Enter contact Name:";
-        string s_name;
-        cin.ignore();
-        getline(cin, s_name);
-        bool found = false;
-        for(size_t i = 0; i < contacts.size();i++)
+        cout<<"Search Contact\n1 Name\n 2 phone No\n Enter choice:"<<endl;
+        int op;
+        cin>>op;
+        switch(op)
         {
-            if(contacts[i].name == s_name)
+            case 1:
             {
-                found = true;
-                cout<< contacts[i].name<<" "<<contacts[i].phone<<" "<<contacts[i].email<<" "<<contacts[i].address<<endl;
+                cout<<"Enter contact Name:";
+                string s_name;
+                cin.ignore();
+                getline(cin, s_name);
+                bool found = false;
+                for(size_t i = 0; i < contacts.size();i++)
+                {
+                    if(contacts[i].name == s_name)
+                    {
+                        found = true;
+                        cout<< contacts[i].name<<" "<<contacts[i].phone<<" "<<contacts[i].email<<" "<<contacts[i].address<<endl;
+                        break;
+                    }
+                }
+                if(!found)
+                {
+                    cout<<"Contact Name  no found"<<endl;
+                }
+                break;
+            }
+            case 2:
+            {
+                cout<<"Enter contact Phone no:";
+                string s_phone;
+                cin.ignore();
+                getline(cin, s_phone);
+                bool found = false;
+                for(size_t i = 0; i < contacts.size();i++)
+                {
+                    if(contacts[i].phone == s_phone)
+                    {
+                        found = true;
+                        cout<< contacts[i].name<<" "<<contacts[i].phone<<" "<<contacts[i].email<<" "<<contacts[i].address<<endl;
+                        break;
+                    }
+                }
+                if(!found)
+                {
+                    cout<<"Contact phone number no found"<<endl;
+                }
+                break;
+            }
+            default:
+            {
+                cout<<"Please enter valid option"<<endl;
                 break;
             }
         }
-        if(!found)
-        {
-            cout<<"Contact no found"<<endl;
-        }
+        
         
 
     }
