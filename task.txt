@@ -1,0 +1,8 @@
+1 Add Contact
+2 Show Contacts
+3 Search Contact
+4 Update Contact
+5 Delete Contact
+6 Sort Contacts
+7 Save Contacts
+8 Exit
