@@ -5,6 +5,7 @@
 #include <fstream>
 #include <exception>
 #include <iostream>
+#include <algorithm>
 
 using namespace std;
 
@@ -25,6 +26,12 @@ public:
     int Load_Contact();
     void User_inputs();
     void Add_Contact();
+    void Show_Contacts();
+    void Search_Contact();
+    void Update_Contact();
+    void Sort_Contacts();
+    void Save_Contacts();
+    void Delete_Contact();
 
 };
 
