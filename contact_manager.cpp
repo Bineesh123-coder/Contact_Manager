@@ -50,20 +50,33 @@ void Contact_Manager::Add_Contact()
     cin.ignore();
     getline(cin, c.name);
     cout<<"Enter phone No:";
-    cin.ignore();
+    //cin.ignore();
     getline(cin, c.phone);
+
+    for(auto  &e : contacts)
+    {
+        if(e.phone == c.phone)
+        {
+            cout<<"this phone number already exit  please verify number"<<endl;
+            return;
+        }
+    }
+    
     cout<<"Enter Emial:";
-    cin.ignore();
+    //cin.ignore();
     getline(cin, c.email);
     cout<<"Enter Address:";
-    cin.ignore();
+    //cin.ignore();
     getline(cin, c.address);
+
+    
     
     ofstream My_file("contact.txt", std::ios::app);
     My_file<<"\n"<<c.name<<" "<<c.phone<<" "<<c.email<<" "<<c.address<<"\n";
     My_file.close();
 
     contacts.push_back(c);
+    cout<<"Added Contact successfully"<<endl;
 
 }
 
@@ -329,7 +342,6 @@ void Contact_Manager::User_inputs()
         {
             
             Add_Contact(); 
-            cout<<"Added Contact successfully"<<endl;
             break;
         }
         case 2:
