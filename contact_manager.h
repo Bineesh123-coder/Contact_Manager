@@ -34,7 +34,9 @@ public:
     void Sort_Contacts();
     void Save_Contacts();
     void Delete_Contact();
+    void Search_Name_and_phone();
     void Fast_Search_Contact();
+    void Partial_Search();
 
 };
 

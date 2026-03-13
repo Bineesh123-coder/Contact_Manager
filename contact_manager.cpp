@@ -122,10 +122,41 @@ void Contact_Manager:: Fast_Search_Contact()
         cout<<"ERROR:Contact_Manager::Fast_Search_Contact()"<<e.what()<<endl; 
     }
 }
-void Contact_Manager:: Search_Contact()
-{   
+
+void Contact_Manager:: Partial_Search()
+{
     try{
-        cout<<"Search Contact\n1 Name\n 2 phone No\n Enter choice:"<<endl;
+
+        cout<<"Enter contact Name:";
+        string search_word;
+        cin.ignore();
+        getline(cin, search_word);
+        bool  found = false;
+
+        for(auto &e :contacts)
+        {
+            if(e.name.find(search_word) == 0)
+            {
+                found = true;
+                cout<<"Contact found in list\n"<<e.name<<" "<<e.phone<<endl; 
+            }
+        }
+        if(!found)
+        {
+            cout<<search_word<<""<<"Contact not found in list"<<endl;
+        }
+        
+    }
+    catch(const exception &e)
+    {
+        cout<<"ERROR:Contact_Manager::Partial_Search()"<<e.what()<<endl; 
+    }
+}
+
+void Contact_Manager:: Search_Name_and_phone()
+{
+     try{
+        cout<<"Search Contact\n1 Name\n2 phone No\n Enter choice:";
         int op;
         cin>>op;
         switch(op)
@@ -181,9 +212,48 @@ void Contact_Manager:: Search_Contact()
             }
         }
         
-        
-
     }
+    catch(const exception &e)
+    {
+        cout<<"ERROR:Contact_Manager::Search_Name_and_phone()"<<e.what()<<endl; 
+    }
+}
+void Contact_Manager:: Search_Contact()
+{   
+    try{
+
+        cout<<"Search Contact\n1 Search by Name(fast search)\n2 Search by Name or Phone\n3 Partial Search (first letters)\n4 Back\nEnter choice:";
+        int option;
+        cin>>option;
+        switch(option)   
+        {
+            case 1:
+            {   
+                Fast_Search_Contact();
+                break;
+            }
+            case 2:
+            {
+                Search_Name_and_phone();
+                break;
+            }
+            case 3:
+            {
+                Partial_Search();
+                break;
+            }
+            case 4:
+            {
+                cout<<"Back to Main"<<endl;
+                break;
+            }
+            default:
+            {
+                cout<<"Invalid option Back to Main"<<endl;
+                break;
+            }
+        }
+    }         
     catch(const exception &e )
     {
         cout<<"ERROR:Contact_Manager::Search_Contact()"<<e.what()<<endl;
@@ -375,8 +445,7 @@ void Contact_Manager::User_inputs()
         }
         case 3:
         {
-            //Search_Contact();
-            Fast_Search_Contact();
+            Search_Contact();
             break;
         }
         case 4:
