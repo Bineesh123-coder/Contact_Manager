@@ -15,6 +15,7 @@ int  Contact_Manager::Load_Contact()
     while(file >> c.name >> c.phone >> c.email >> c.address)
     {
         contacts.push_back(c);
+        fast_search[c.name] = c.phone;
     }
 
     file.close();
@@ -76,6 +77,7 @@ void Contact_Manager::Add_Contact()
     My_file.close();
 
     contacts.push_back(c);
+    fast_search[c.name] = c.phone;
     cout<<"Added Contact successfully"<<endl;
 
 }
@@ -98,6 +100,28 @@ void Contact_Manager::Show_Contacts()
 
 }
 
+void Contact_Manager:: Fast_Search_Contact()
+{
+    try{
+
+        cout<<"Enter contact Name:";
+        string f_name;
+        cin.ignore();
+        getline(cin, f_name);
+
+        if(fast_search.find(f_name) != fast_search.end())
+        {
+            cout<<"Contact found in list\n"<<f_name<<" "<<fast_search[f_name]<<endl;
+            return;
+        }
+
+        cout<<f_name<<""<<"Contact not found in list"<<endl;
+    }
+    catch(const exception &e)
+    {
+        cout<<"ERROR:Contact_Manager::Fast_Search_Contact()"<<e.what()<<endl; 
+    }
+}
 void Contact_Manager:: Search_Contact()
 {   
     try{
@@ -351,7 +375,8 @@ void Contact_Manager::User_inputs()
         }
         case 3:
         {
-            Search_Contact();
+            //Search_Contact();
+            Fast_Search_Contact();
             break;
         }
         case 4:

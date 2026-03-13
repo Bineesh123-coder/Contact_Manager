@@ -6,6 +6,7 @@
 #include <exception>
 #include <iostream>
 #include <algorithm>
+#include <unordered_map>
 
 using namespace std;
 
@@ -20,6 +21,7 @@ public:
 class Contact_Manager{
 public:
     vector<Contact> contacts;
+    unordered_map<string,string> fast_search;
     int success = 0;
     int failure = -1;
     void Start();
@@ -32,6 +34,7 @@ public:
     void Sort_Contacts();
     void Save_Contacts();
     void Delete_Contact();
+    void Fast_Search_Contact();
 
 };
 
