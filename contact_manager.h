@@ -29,6 +29,8 @@ public:
     void User_inputs();
     void Add_Contact();
     void Show_Contacts();
+    void Show_All_Contacts();
+    void Pagination();
     void Search_Contact();
     void Update_Contact();
     void Sort_Contacts();

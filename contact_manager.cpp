@@ -85,6 +85,39 @@ void Contact_Manager::Add_Contact()
 void Contact_Manager::Show_Contacts()
 {
     try{
+        cout<<"1 show all contcts\n2 show few contacts per page\nEnter choice:";
+        int op;
+        cin>>op;
+        switch(op)
+        {
+            case 1:
+            {
+                Show_All_Contacts();
+                break;
+            }
+            case 2:
+            {
+                Pagination();
+                break;
+            }
+            default:
+            {
+                cout<<"invalid option exit to go Main"<<endl;
+                break;
+            }
+        }
+
+    }
+    catch(const exception &e )
+    {
+        cout<<"ERROR:Contact_Manager::Show_Contacts()"<<e.what()<<endl;
+    }
+
+}
+
+void Contact_Manager::Show_All_Contacts()
+{
+    try{
         cout<<"---------All contacts--------"<<endl;
         for(auto &e: contacts)
         {
@@ -99,6 +132,77 @@ void Contact_Manager::Show_Contacts()
     }
 
 }
+
+//Show only a few contacts per page.
+void Contact_Manager::Pagination()
+{
+    try{
+        size_t page_size = 5;
+        size_t start = 0;
+        size_t end = start + page_size;
+        string key;
+
+        do{
+
+            for(size_t i = start; i < end && i < contacts.size(); i++)
+            {
+                cout<<i<<" "<<contacts[i].name<<" "<<contacts[i].phone<<endl;
+            }
+
+            if(end < contacts.size())
+            {
+                cout<<"Press N for next page\n";
+            }
+            else
+            {
+                cout<<"No next page\n";
+            }
+
+            if(start >= page_size)
+            {
+                cout<<"Press P for previous page\n";
+            }
+            else
+            {
+                cout<<"No previous page\n";
+            }
+
+            cout<<"Press X Back\nEnter choice: ";
+            cin>>key;
+
+            if(key == "n" || key == "N")
+            {
+                if(end < contacts.size())
+                {
+                    start += page_size;
+                    end = start + page_size;
+                }
+            }
+
+            else if(key == "p" || key == "P")
+            {
+                if(start >= page_size)
+                {
+                    start -= page_size;
+                    end = start + page_size;
+                }
+            }
+
+            else
+            {
+                cout<<"Back to main\n";
+                break;
+            }
+
+        }while(true);
+    }
+
+    catch(const exception &e )
+    {
+        cout<<"ERROR:Contact_Manager::Pagination() "<<e.what()<<endl;
+    }
+}
+
 
 void Contact_Manager:: Fast_Search_Contact()
 {
