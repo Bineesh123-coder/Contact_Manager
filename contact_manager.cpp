@@ -133,17 +133,26 @@ void Contact_Manager:: Partial_Search()
         getline(cin, search_word);
         bool  found = false;
 
+        // convert search word to lowercase
+        transform(search_word.begin(), search_word.end(), search_word.begin(), ::tolower);
+
         for(auto &e :contacts)
         {
-            if(e.name.find(search_word) == 0)
+            string name = e.name;
+
+            // convert name to lowercase
+            transform(name.begin(), name.end(), name.begin(), ::tolower);
+
+            if(name.find(search_word) == 0)
             {
                 found = true;
-                cout<<"Contact found in list\n"<<e.name<<" "<<e.phone<<endl; 
+                cout<<"Contact found in list\n"
+                    <<e.name<<" "<<e.phone<<endl;
             }
         }
         if(!found)
         {
-            cout<<search_word<<""<<"Contact not found in list"<<endl;
+            cout<<search_word<<" "<<"Contact not found in list"<<endl;
         }
         
     }
